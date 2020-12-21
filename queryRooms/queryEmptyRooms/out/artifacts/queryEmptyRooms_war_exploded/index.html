@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <title>空教室查询</title>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>空教室查询</h1>
+        <p class="gray"><small>FOR HBFU</small></p>
+        <em>Tips:可以不必选择时间，直接点击查询当前的空教室</em>
+    </div>
+</div>
+    <div class="container">
+        <form action="/query" method="post" class="form-horizontal  form-group-lg">
+            <div class="form-group">
+                <label  class="col-sm-2  control-label">星期:</label>
+                <div class="col-sm-8">
+                <select class="form-control" name="week_day">
+                    <option value=0 >选择星期</option>
+                    #for(i=1;i<8;i++)
+                    <option value=#(i)>#(i)</option>
+                    #end
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="col-sm-2  control-label">时间:</label>
+                <div class="col-sm-8">
+                    <select class="form-control"  name="day_time">
+                        <option value=0 >选择时间</option>
+                        #for(i=1;i<6;i++)
+                        <option value=#(i) >第#(i)大节课</option>
+                        #end
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 col-md-push-5 col-sm-4 col-xs-push-4">
+                    <input type="submit" class="btn btn-primary btn-lg" value="查询">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

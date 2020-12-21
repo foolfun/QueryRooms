@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <title>查询结果</title>
+    <script language="JavaScript">
+        function chooseLevel(level,building,wd,dt){
+            window.location.href = "/query?level="+level.value+"&week_day="+wd.value+"&day_time="+dt.value+"&building="+building.value;
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#at").click(function(){
+                $("#A").toggle();
+            });
+            $("#bt").click(function(){
+                $("#B").toggle();
+            });
+            $("#ct").click(function(){
+                $("#C").toggle();
+            });
+            $("#dtt").click(function(){
+                $("#D").toggle();
+            });
+        });
+    </script>
+</head>
+<body>
+<button value=#(week_day) id="wd" hidden="hidden"></button>
+<button value=#(day_time) id="dt" hidden="hidden"></button>
+
+    <nav class="navbar navbar-inverse" >
+        <div class="navbar-header">
+            <strong class="navbar-brand">#(date)空闲教室：</strong>
+            <em class="navbar-brand"><small>Tips:可以在当前基础上进行楼、层的选择</small></em>
+        </div>
+    </nav>
+<!--<div class="container">-->
+    <div class="col-md-2 form-group">
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        选择楼、层
+    </button>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                       请进行选择：
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <select class="form-control" name="building" id="bu">
+                                <option value="">选择楼座（非必选）</option>
+                                <option value="A" >A</option>
+                                <option value="B东" >B东</option>
+                                <option value="B西" >B西</option>
+                                <option value="C" >C</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control"  name="level" onchange="chooseLevel(this,document.getElementById('bu'),document.getElementById('wd'),document.getElementById('dt'))">
+                                <option readonly>选择楼层（必选）</option>
+                                <option value="">全部楼层</option>
+                                #for(i=1;i<=5;i++)
+                                <option value=#(i) >#(i)层</option>
+                                #end
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="col-md-8">
+        <button  class="btn btn-success btn-block active" id="at">A楼</button>
+            <div id="A">
+                <table class="table text-center table-hover">
+                #for(ax : lista)
+                <tr class="active">
+                    <td class="active" >#(ax)</td>
+                </tr>
+                #end
+                </table>
+            </div>
+        <button  class="btn btn-success btn-block active" id="bt">B楼</button>
+            <div id="B">
+                <table class="table text-center table-hover">
+                #for(bx:listb)
+                <tr class="active">
+                    <td class="active" >#(bx)</td>
+                </tr>
+                #end
+                </table>
+            </div>
+        <button  class="btn btn-success btn-block active" id="ct">C楼</button>
+            <div id="C">
+                <table class="table text-center table-hover">
+                #for(cx:listc)
+                <tr class="active">
+                    <td class="active" >#(cx)</td>
+                </tr>
+                #end
+                </table>
+            </div>
+        <button  class="btn btn-success btn-block active" id="dtt">D楼</button>
+            <div id="D">
+                <table class="table text-center table-hover">
+                #for(dx:listd)
+                <tr class="active">
+                    <td class="active" >#(dx)</td>
+                </tr>
+                #end
+                </table>
+            </div>
+
+        <a class="btn btn-block btn-lg" href="/">返回</a>
+    </div>
+<!--</div>-->
+</body>
+</html>
